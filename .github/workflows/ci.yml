@@ -26,6 +26,8 @@ jobs:
           mvn -version
       - name: Build & Test (no fail on zero tests)
         run: mvn -B -DskipTests=false -DfailIfNoTests=false test
+      - name: Run LoanFlowIT explicitly
+        run: mvn -B -DskipTests=false -DfailIfNoTests=false -Dtest=LoanFlowIT test
       - name: Publish Surefire Report (artifact)
         # Solo subir el artifact si existen archivos de reporte
         if: ${{ hashFiles('**/target/surefire-reports/*.xml', '**/target/surefire-reports/*.txt') != '' }}
